@@ -1,64 +1,64 @@
-import { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { useCookies } from 'react-cookie'
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const AuthModal = ({ setShowModal, isSignUp }) => {
-  const [email, setEmail] = useState(null)
-  const [password, setPassword] = useState(null)
-  const [confirmPassword, setConfirmPassword] = useState(null)
-  const [error, setError] = useState(null)
-  const [cookies, setCookie, removeCookie] = useCookies(null)
-  const [user, setUser] = useState(null)
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
+  const [error, setError] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [user, setUser] = useState(null);
 
-  let navigate = useNavigate()
-  const onInput = e =>
-    setUser({ ...user, ...{ [e.target.name]: e.target.value } })
+  let navigate = useNavigate();
+  const onInput = (e) =>
+    setUser({ ...user, ...{ [e.target.name]: e.target.value } });
 
   const handleClick = () => {
-    setShowModal(false)
-  }
+    setShowModal(false);
+  };
 
   // create user from frontend
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
       // if (isSignUp) {
       //   return
       // }
 
-      user.isAdmin = false
+      user.isAdmin = false;
       // const response = await axios.post(`http://localhost:8000/users`, user)
 
       const response = await axios.post(
-        `http://localhost:8000/${isSignUp ? 'users' : 'login'}`,
+        `http://localhost:8000/${isSignUp ? "users" : "login"}`,
         user
-      )
-      console.log(response)
+      );
+      console.log(response);
 
-      setCookie('AuthToken', response.data.token)
-      setCookie('UserId', response.data.userId)
+      setCookie("AuthToken", response.data.token);
+      setCookie("UserId", response.data.userId);
 
-      const success = response.status === 201
-      if (success && isSignUp) navigate('/onboarding')
-      if (success && !isSignUp) navigate('/dashboard')
+      const success = response.status === 201;
+      if (success && isSignUp) navigate("/onboarding");
+      if (success && !isSignUp) navigate("/dashboard");
 
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       if (error.response.status === 409) {
-        alert(error.response.data)
+        alert(error.response.data);
       }
     }
-  }
+  };
 
   return (
-    <div className='auth-modal'>
-      <div className='close-icon' onClick={handleClick}>
+    <div className="auth-modal">
+      <div className="close-icon" onClick={handleClick}>
         ⓧ
       </div>
 
-      <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
+      <h2>{isSignUp ? "CREATE ACCOUNT" : "LOG IN"}</h2>
       <p>
         By clicking Log In, you agree to our terms. Learn how we process your
         data in our Privacy Policy and Cookie Policy.
@@ -103,30 +103,30 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         <p>{error}</p>
       </form> */}
 
-      <form action='submit' onSubmit={e => handleSubmit(e)}>
-        <label htmlFor='First Name'>First Name</label>
+      <form action="submit" onSubmit={(e) => handleSubmit(e)}>
+        <label htmlFor="First Name">First Name</label>
         <input
           autoFocus
-          name='first_name'
-          type='text'
-          onInput={e => onInput(e)}
+          name="first_name"
+          type="text"
+          onInput={(e) => onInput(e)}
         />
-        <label htmlFor='Last Name'>Last Name</label>
+        <label htmlFor="Last Name">Last Name</label>
 
-        <input name='last_name' type='text' onInput={e => onInput(e)} />
-        <label htmlFor='email'>Email</label>
-        <input name='email' type='text' onInput={e => onInput(e)} />
+        <input name="last_name" type="text" onInput={(e) => onInput(e)} />
+        <label htmlFor="email">Email</label>
+        <input name="email" type="text" onInput={(e) => onInput(e)} />
 
-        <label htmlFor='password'>Password</label>
-        <input name='password' type='password' onInput={e => onInput(e)} />
-        <label htmlFor='photo'>Photo</label>
-        <input name='photo' type='text' onInput={e => onInput(e)} />
-        <label htmlFor='profession'>Profession</label>
-        <input name='profession' type='text' onInput={e => onInput(e)} />
-        <label htmlFor='interest'>Interest</label>
-        <input name='interest' type='text' onInput={e => onInput(e)} />
-        <label htmlFor='about'>About</label>
-        <input name='about' type='text' onInput={e => onInput(e)} />
+        <label htmlFor="password">Password</label>
+        <input name="password" type="password" onInput={(e) => onInput(e)} />
+        <label htmlFor="photo">Photo</label>
+        <input name="photo" type="text" onInput={(e) => onInput(e)} />
+        <label htmlFor="profession">Profession</label>
+        <input name="profession" type="text" onInput={(e) => onInput(e)} />
+        <label htmlFor="interest">Interest</label>
+        <input name="interest" type="text" onInput={(e) => onInput(e)} />
+        <label htmlFor="about">About</label>
+        <input name="about" type="text" onInput={(e) => onInput(e)} />
 
         <button>Submit</button>
       </form>
@@ -134,6 +134,6 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
       <hr />
       <h2>GET THE APP</h2>
     </div>
-  )
-}
-export default AuthModal
+  );
+};
+export default AuthModal;
