@@ -327,18 +327,18 @@ nav .logo-container .logo {
   overflow-y: auto;
 }
 
-.message-box{
+.message-box {
   background: linear-gradient(
     45deg,
     rgba(241, 156, 11, 0.921),
     rgba(246, 181, 51, 0.789)
   );
-padding: 8px 10px;
-border-radius: 4px;
-max-width: 30%;
-margin: 0 50% 0 0;
-color: #f7f3f3;
-font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  max-width: 30%;
+  margin: 0 50% 0 0;
+  color: #f7f3f3;
+  font-size: 14px;
 }
 
 /*-------- Chat Input --------*/
@@ -350,6 +350,15 @@ font-size: 14px;
   border-radius: 5px;
   margin-left: 15%;
   width: 70%;
+}
+
+.secondary-button {
+  background: linear-gradient(
+    45deg,
+    rgba(241, 156, 11, 0.921),
+    rgba(246, 181, 51, 0.789)
+  );
+  color: white;
 }
 
 /*-------- Fav Users --------*/

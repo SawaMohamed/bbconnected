@@ -44,7 +44,7 @@ const ChatContainer = () => {
 
       <div>
         <button className="option" onClick={() => setClickedUser(null)}>
-          Matches
+          Connections
         </button>
         <button className="option" disabled={!clickedUser}>
           Chat
