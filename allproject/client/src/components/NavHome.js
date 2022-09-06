@@ -8,7 +8,7 @@ const NavDashboard = () => {
         <Link to='/fav'>Favorites</Link>
         <Link to='/dashboard'>Dashboard</Link>
         <Link to='/onboarding'>Options</Link>
-        <Link to='/chat'>Chat</Link>
+        <Link to='/chat'>Chazt</Link>
       </nav>
     </div>
   )
