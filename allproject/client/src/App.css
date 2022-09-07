@@ -154,6 +154,23 @@ nav .logo-container .logo {
 
 }
 
+.logout-btn{
+  border: none;
+  background: none;
+  color: white;
+ font-size: 15px;
+ cursor: pointer;
+ text-transform: uppercase;
+ transform: translateX(2rem);
+}
+
+.logout-btn:hover{
+  color: rgb(222, 146, 3);
+    background: rgba(242, 223, 190, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+}
+
 /*-------- Home page --------*/
 .overlay {
 
@@ -434,8 +451,13 @@ border-radius: 60px;
 .dashboard {
 
     display: flex;
-    justify-content: space-between;
-    
+    justify-content: center;
+    background: linear-gradient(
+      to top,
+            rgba(244, 230, 183, 0.25) 0%,
+            rgba(0, 0, 0, 0) 100% 
+    );
+    height:950px
 }
 
 .dashboard .swipe-container {
@@ -445,7 +467,8 @@ border-radius: 60px;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    transform: translateY(8rem);
+    transform: translateY(7rem);
+    box-shadow: 0px 10px 53px 0 px black;
 
 }
 
@@ -456,6 +479,7 @@ border-radius: 60px;
 .dashboard .card-container {
   width: 400px;
   height: 650px;
+  
 }
 
 .card {
@@ -481,11 +505,12 @@ border-radius: 60px;
 }
 
 .dashboard .swipe-info {
-    position: absolute;
+    position: relative;
     bottom: 0;
     padding: 10px;
-    transform: translateY(12rem);
+    transform: translateY(-3rem);
     color: rgb(222, 146, 3);
+    background: none;
 
 }
 
@@ -500,7 +525,7 @@ border-radius: 60px;
     background: rgb(230, 163, 61);
     z-index: 1;
     position: absolute;
-    
+    border-radius: 20px;
 }
 
 .tinder-layout .card-content-about {
@@ -508,27 +533,38 @@ border-radius: 60px;
    width: 300px !important ;
    align-items: center;
    justify-content: center;
-   transform: translateX(2rem);
+   transform: translateX(3rem);
    height: 170px !important;
+   color: black;
+   background: rgba(237, 230, 220, 0.37);
+   padding: 10px;
+   margin-bottom: 20px;
 }
 
 .tinder-layout .card-content-interest{
-    transform: translateX(2rem);
+    transform: translateX(3rem);
     height: 120px;
     width: 300px !important ;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    
+    color: black;
+   background: rgba(235, 225, 212, 0.37);
+   padding: 10px;
+   margin-bottom: 20px; 
 } 
 
 .tinder-layout .card-content-links{
-    transform: translateX(2rem);
-    height: 100px;
+    transform: translateX(3rem);
+    height: 120px;
     width: 300px !important ;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    color: black;
+   background: rgba(235, 225, 212, 0.37);
+   padding: 10px;
+   margin-bottom: 20px;
 } 
 
 .swipe-icons{
@@ -571,13 +607,15 @@ border-radius: 60px;
 }
 
 .tinder-layout .hide-card-content{
-    padding: 1vw !important;
+    padding: 1vw ;
     transform: translateX(-9.5rem);
     color: white;
     
-
 }
 
+.tinder-layout .hide-card-content:hover{
+  background: rgb(213, 213, 213, 0);
+}
 
 
 /*-------- Chat Container --------*/
@@ -673,7 +711,21 @@ font-size: 14px;
 }
 
 /*-------- Fav Users --------*/
+
 .fav-container {
   display: flex;
   flex-flow: row wrap;
+  padding: 20px;
+  transform: translateY(6rem);
+  background: linear-gradient(
+      to top,
+            rgba(244, 230, 183, 0.25) 0%,
+            rgba(0, 0, 0, 0) 100% 
+    );
 }
+
+.fav-users-cards{
+  padding: 10px;
+}
+
+

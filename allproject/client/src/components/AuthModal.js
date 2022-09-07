@@ -97,7 +97,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         <label htmlFor='about'>About</label>
         <input name='about' type='text' onInput={onInput} /> */}
 
-        <button classname="sumbit-form">Submit</button>
+        <button className="sumbit-form">Submit</button>
       </form>
 
       <hr />

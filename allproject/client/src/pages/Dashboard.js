@@ -165,20 +165,21 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
                   <div className="tinder-layout" style={{ display:`${tinderLayoutHeight}` }}>
                     <IconButton className="hide-card-content" onClick={hideTinderLayout}><ArrowBackIcon /></IconButton>
-                    <p className="card-content-about" style={{fontSize:'16px'}}>About me:
+                    <div className="card-content-about" style={{fontSize:'16px'}}>About me:
                       <br></br>
                       <br></br> 
                       <p style={{fontSize:'14px'}}>{i.about}</p>
-                      </p>
-                    <p className="card-content-interest">I am looking for..
+                      </div>
+                    <div className="card-content-interest">I am looking for..
                       <br></br>
                       <br></br>
                       <p style={{fontSize:'14px'}}>{i.interest}</p>
-                      </p>
-                    <p className="card-content-links">You can also find me at: 
+                      </div>
+                    <div className="card-content-links">You can also find me at: 
                       <br></br>
                       <br></br> 
-                      <p className="interest-content" style={{fontSize:'14px'}}>{i.link_github}{i.link_portfolio}{i.link_linkedin}</p></p>
+                      <p className="interest-content" style={{fontSize:'14px'}}>{i.link_github}{i.link_portfolio}{i.link_linkedin}</p>
+                  </div>
                   </div>
                   <div
                     style={{ backgroundImage: 'url(' + i.url + ')' }}
@@ -189,25 +190,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
                   
                   <IconButton className="swipeButton-favorite" onClick={() => addFav(i)}><StarIcon fontSize="large" /></IconButton>
-                
-                  {/* <div className="swipe-icons">
-              <IconButton className="swipeButton_close" onClick={dir => swiped(dir, i.user_id)}>
-                <CloseIcon fontSize="large" /> 
-              </IconButton>
-              <IconButton className="swipeButton-favorite">
-                <StarIcon fontSize="large" />
-              </IconButton>
-              <IconButton className="swipeButton-like"> 
-                <HandshakeIcon fontSize="large" />
-              </IconButton> 
-                 
-              </div>*/}
-                
-                
-
-                  {/* <button className='fav-button' onClick={() => addFav(i)}>
-                    Favorites
-                  </button> */}
 
                 </TinderCard>
               ))}
@@ -220,9 +202,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
               <IconButton className="swipeButton_close" onClick={clicked}>
                 <CloseIcon fontSize="large" /> 
               </IconButton>
-              {/* <IconButton className="swipeButton-favorite">
-                <StarIcon fontSize="large" /> 
-              </IconButton>*/} 
               <IconButton className="swipeButton-like"> 
                 <HandshakeIcon fontSize="large" />
               </IconButton>
