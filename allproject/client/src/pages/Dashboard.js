@@ -10,12 +10,9 @@ import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCi
 import StarIcon from '@mui/icons-material/Star'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@material-ui/core/IconButton'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
-
-
-
- const Dashboard = () => {
+const Dashboard = () => {
   const [user, setUser] = useState(null)
   const [users, setUsers] = useState(null)
   const [usersJobs, setUsersJobs] = useState(null)
@@ -24,10 +21,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
   const [professionFilter, setProfessionFilter] = useState(null)
   const [cookies, setCookie, removeCookie] = useCookies(null)
   const [favUsers, setFavUsers] = useState([])
-  const [tinderLayoutHeight, setTinderLayoutHeight] = useState("none")
-  const [buttonLayout, setButtonLayout] = useState("flex")
+  const [tinderLayoutHeight, setTinderLayoutHeight] = useState('none')
+  const [buttonLayout, setButtonLayout] = useState('flex')
   const [finalFilteredUsers, setFinalFilteredUsers] = useState([])
-
 
   const userId = cookies.UserId
   // @desc      get all users & get current user
@@ -39,6 +35,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
       const activeUser = await axios.get(
         `http://localhost:8000/users/${userId}`
       )
+
       setUser(activeUser.data)
     } catch (error) {
       console.log(error.message)
@@ -96,9 +93,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
   }
 
   const clicked = (direction, swipedUserId) => {
-    
-      updateMatches(swipedUserId)
-    
+    updateMatches(swipedUserId)
   }
 
   const outOfFrame = name => {
@@ -115,15 +110,18 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
   })
 
   const hideTinderLayout = () => {
-  if (tinderLayoutHeight==="flex")
-    {
-    setTinderLayoutHeight("none")
-    setButtonLayout("flex")
-  } else {
-    setTinderLayoutHeight("flex")
-    setButtonLayout("none")
-  } 
-     
+    if (tinderLayoutHeight === 'flex') {
+      setTinderLayoutHeight('none')
+      setButtonLayout('flex')
+    } else {
+      setTinderLayoutHeight('flex')
+      setButtonLayout('none')
+    }
+  }
+
+  // @desc    save me in local for all other components
+  const saveUserLocal = user => {
+    localStorage.setItem('currentUser', JSON.stringify(user))
   }
 
   useEffect(() => {
@@ -133,9 +131,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
   useEffect(() => {
     if (user) {
       usersJobInterest()
+      saveUserLocal(user)
     }
   }, [user])
-  
 
   useEffect(() => {
     if (user) {
@@ -145,13 +143,11 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
     }
   }, [usersJobs])
 
-
-
   return (
     <>
       {user && (
         <div className='dashboard'>
-      {/*  <ChatContainer user={user} /> */}
+          {/*  <ChatContainer user={user} /> */}
           <div className='swipe-container'>
             <div className='card-container'>
               {finalFilteredUsers?.map(i => (
@@ -161,52 +157,89 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
                   onSwipe={dir => swiped(dir, i.user_id)}
                   onCardLeftScreen={() => outOfFrame(i.first_name)}
                 >
-                  <IconButton className="show-card-content" onClick={hideTinderLayout} style={{ display:`${buttonLayout}`}}><ArrowDropDownCircleOutlinedIcon /></IconButton>
+                  <IconButton
+                    className='show-card-content'
+                    onClick={hideTinderLayout}
+                    style={{ display: `${buttonLayout}` }}
+                  >
+                    <ArrowDropDownCircleOutlinedIcon />
+                  </IconButton>
 
-                  <div className="tinder-layout" style={{ display:`${tinderLayoutHeight}` }}>
-                    <IconButton className="hide-card-content" onClick={hideTinderLayout}><ArrowBackIcon /></IconButton>
-                    <div className="card-content-about" style={{fontSize:'16px'}}>About me:
+
+                  <div
+                    className='tinder-layout'
+                    style={{ display: `${tinderLayoutHeight}` }}
+                  >
+                    <IconButton
+                      className='hide-card-content'
+                      onClick={hideTinderLayout}
+                    >
+                      <ArrowBackIcon />
+                    </IconButton>
+                    <div
+                      className='card-content-about'
+                      style={{ fontSize: '16px' }}
+                    >
+                      About me:
                       <br></br>
-                      <br></br> 
-                      <p style={{fontSize:'14px'}}>{i.about}</p>
-                      </div>
-                    <div className="card-content-interest">I am looking for..
+                      <br></br>
+                      <p style={{ fontSize: '14px' }}>{i.about}</p>
+                    </div>
+                    <div className='card-content-interest'>
+                      I am looking for..
                       <br></br>
                       <br></br>
-                      <p style={{fontSize:'14px'}}>{i.interest}</p>
-                      </div>
-                    <div className="card-content-links">You can also find me at: 
+                      <p style={{ fontSize: '14px' }}>{i.interest}</p>
+                    </div>
+                    <div className='card-content-links'>
+                      You can also find me at:
                       <br></br>
-                      <br></br> 
-                      <p className="interest-content" style={{fontSize:'14px'}}>{i.link_github}{i.link_portfolio}{i.link_linkedin}</p>
-                  </div>
+
+                      <br></br>
+                      <p
+                        className='interest-content'
+                        style={{ fontSize: '14px' }}
+                      >
+                        {i.link_github}
+                        {i.link_portfolio}
+                        {i.link_linkedin}
+                      </p>
+                    </div>
+
                   </div>
                   <div
                     style={{ backgroundImage: 'url(' + i.url + ')' }}
                     className='card'
                   >
-                    <h3 className="card-title">{i.first_name} {i.last_name}, {i.profession}</h3>
+                    <h3 className='card-title'>
+                      {i.first_name} {i.last_name}, {i.profession}
+                    </h3>
                   </div>
 
-                  
-                  <IconButton className="swipeButton-favorite" onClick={() => addFav(i)}><StarIcon fontSize="large" /></IconButton>
+
+                  <div className='swipe-icons'>
+                    <IconButton className='swipeButton_close' onClick={clicked}>
+                      <CloseIcon fontSize='large' />
+                    </IconButton>
+                    <IconButton
+                      className='swipeButton-favorite'
+                      onClick={() => addFav(i)}
+                    >
+                      <StarIcon fontSize='large' />
+                    </IconButton>
+                    <IconButton className='swipeButton-like'>
+                      <HandshakeIcon fontSize='large' />
+                    </IconButton>
+                  </div>
 
                 </TinderCard>
               ))}
-              
+
               <div className='swipe-info'>
                 {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
               </div>
             </div>
-            <div className="swipe-icons">
-              <IconButton className="swipeButton_close" onClick={clicked}>
-                <CloseIcon fontSize="large" /> 
-              </IconButton>
-              <IconButton className="swipeButton-like"> 
-                <HandshakeIcon fontSize="large" />
-              </IconButton>
-                 
-              </div>
+
           </div>
         </div>
       )}

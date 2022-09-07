@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
+import HandshakeIcon from '@mui/icons-material/Handshake'
 import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
+import StarIcon from '@mui/icons-material/Star'
+import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@material-ui/core/IconButton'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+
 
 const FavUsers = () => {
   const [favUsers, setFavUsers] = useState(null)
@@ -12,11 +16,11 @@ const FavUsers = () => {
   const [fav, setFav] = useState(null)
   const [favLayoutHeight, setFavLayoutHeight] = useState("none")
   const [favButtonLayout, setFavButtonLayout] = useState("flex")
-
   const [cookies, setCookie, removeCookie] = useCookies(null)
 
   const userId = cookies.UserId
 
+  // @desc    get my personal data
   const getMe = async () => {
     try {
       const activeUser = await axios.get(
@@ -29,7 +33,8 @@ const FavUsers = () => {
       console.log(error.message)
     }
   }
-
+  
+  // @desc    get my fav users data according to my favUsers
   const getFav = async () => {
     try {
       if (myFavIds) {
@@ -43,6 +48,7 @@ const FavUsers = () => {
     }
   }
 
+
   const hideFavLayout = () => {
     if (favLayoutHeight==="flex")
       {
@@ -51,6 +57,44 @@ const FavUsers = () => {
     } else {
       setFavLayoutHeight("flex")
       setFavButtonLayout("none")
+    }
+  }
+  // @desc    add user to me matches
+  const addUser = async i => {
+    try {
+      let userId = me.user_id
+      let matchedUserId = i.user_id
+      const { data } = await axios.put('http://localhost:8000/users', {
+        userId,
+        matchedUserId,
+      })
+      console.log(data)
+      removeUser(i)
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
+  // @desc    remove user from my fav
+  const removeUser = async i => {
+    try {
+      if (me) {
+        let arr = []
+        me?.favUsers.map(e => e.user_id !== i?.user_id && arr.push(e))
+        let formData = { ...me, favUsers: arr }
+        const response = await axios.put(
+          `http://localhost:8000/users/${me?.user_id}`,
+          {
+            formData,
+          }
+        )
+        if (response) {
+          window.location.reload()
+        }
+      }
+    } catch (err) {
+      console.log(err.message)
+
     }
   }
 
@@ -92,6 +136,18 @@ const FavUsers = () => {
 </div>
             <h3 className="card-title">{i?.first_name} {i.last_name} , {i.profession}</h3>
             {/* <p classname="fav-profession">{i?.profession}</p> */}
+          </div>
+
+          <div className='swipe-icons'>
+            <IconButton
+              className='swipeButton_close'
+              onClick={() => removeUser(i)}
+            >
+              <CloseIcon fontSize='large' />
+            </IconButton>
+            <IconButton className='swipeButton-like' onClick={() => addUser(i)}>
+              <HandshakeIcon fontSize='large' />
+            </IconButton>
           </div>
         </div>
       ))}
