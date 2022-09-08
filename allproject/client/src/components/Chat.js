@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 
 const Chat = ({ descendingOrderMessages, userId }) => {
-  // useEffect(() => {
-  //   console.log(descendingOrderMessages && descendingOrderMessages)
-  // })
+  
 
   
 
