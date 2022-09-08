@@ -32,10 +32,10 @@ const ChatDisplay = ({ user, clickedUser }) => {
   }
 
   useEffect(() => {
-    // setInterval(() => {
+    setInterval(() => {
     getUsersMessages()
     getClickedUsersMessages()
-    // }, 2000)
+    }, 2000)
   }, [])
 
   const messages = []
