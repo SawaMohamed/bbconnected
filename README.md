@@ -1,10 +1,10 @@
 # bconnected - `README.md`
+
 # final project
+
 #application for finiding matches
 
 # About Us: bconnected is an innovative platform that makes business contact easier. With a user friendly interface,
-
-
 
 # you can easily find potential business partners, hire new employees, find a job or simply discover an environment for networking.
 
@@ -71,8 +71,9 @@ User profile:
 |                  |                      |                            |                                                               |
 
 ## Components
+
 - Auth Service
- - AuthModel
+- AuthModel
 - Carousel
 - Chat
 - ChatContainer
@@ -87,6 +88,7 @@ User profile:
 - Test
 
 ## Helpers
+
 CarouselData
 
 ## Pages
@@ -98,6 +100,7 @@ CarouselData
 # Server / Backend
 
 ## Server (Controllers)
+
 - AddFavControllers
 - InterestUsersControllers
 - MatchesController
@@ -109,13 +112,13 @@ CarouselData
 - MessageModel
 
 ## Routes
+
 - AddFavRouter
 - InterestUserRoute
 - LoginRoutes
 - MatchesRouter
 - MessageRoute
 - UserRouter
-
 
 ```
  {
@@ -222,14 +225,12 @@ CarouselData
 | PUT         | /api/exit/:id  |                                                                                                                                                                 |                |              | Used to get one exit point document by id                                                                                       |
 | PUT         | /api/exit/:id  |                                                                                                                                                                 |                |              | Used to delete one exit point document by id                                                                                    |
 | PUT         | /api/user      |                                                                                                                                                                 |                |              | Used to get current user's profile. Id of the user is coming form the req.session.currentUser                                   |
-| POST        | /api/user      | {username, email, password}  
+| POST        | /api/user      | {username, email, password}                                                                                                                                     |
 | POST        |                |
 | DELETE      |                |
 
-
-
 router.put('/', updateMatches)
-router.get('/', getFav)   
+router.get('/', getFav)  
 router.get('/',interestUsers);
 router.post('/',login);
 router.get('/', getMatches)
@@ -240,7 +241,7 @@ router.get('/:userId', getSingleUser)
 router.post('/', creatUser)
 router.put('/:userId', updateUser)
 router.put('/', updateMatches)
-router.delete('/:userId', deleteUser)                                                                                                                          |                |              | Used to update current user's profile. Id of the user is coming form the req.session.currentUser                                |
+router.delete('/:userId', deleteUser) | | | Used to update current user's profile. Id of the user is coming form the req.session.currentUser |
 
 ## Links
 
